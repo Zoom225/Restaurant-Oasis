@@ -1,0 +1,53 @@
+<article
+  class="group h-full overflow-hidden rounded-[1.75rem] border border-oasis-950/10 bg-white shadow-soft transition duration-300 hover:-translate-y-1 hover:shadow-oasis"
+  data-testid="menu-item"
+>
+  @if (item().image; as image) {
+    <div class="relative h-52 overflow-hidden">
+      <img
+        [ngSrc]="image.src"
+        [alt]="image.alt"
+        class="object-cover transition duration-700 group-hover:scale-105"
+        sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
+        fill
+        loading="lazy"
+      />
+      @if (item().featured) {
+        <span class="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-gold-500 px-3 py-1.5 text-xs font-extrabold text-wine-950">
+          <svg lucideSparkles aria-hidden="true" class="size-3.5"></svg>
+          Coup de cœur
+        </span>
+      }
+    </div>
+  }
+
+  <div class="p-6">
+    <div class="flex items-start justify-between gap-5">
+      <h3 class="font-display text-2xl font-bold leading-tight text-oasis-950">{{ item().name }}</h3>
+      <p class="shrink-0 rounded-full bg-cream-100 px-3 py-1.5 text-sm font-extrabold text-mango-600">
+        {{ formatMenuItemPrice(item()) }}
+      </p>
+    </div>
+
+    @if (item().description) {
+      <p class="mt-3 text-sm leading-6 text-oasis-800/80">{{ item().description }}</p>
+    }
+
+    @if (item().options; as options) {
+      <ul class="mt-5 space-y-2 border-t border-dashed border-oasis-950/15 pt-4">
+        @for (option of options; track option.label) {
+          <li class="flex items-baseline justify-between gap-4 text-sm">
+            <span class="text-oasis-800/80">{{ option.label }}</span>
+            <span class="font-extrabold text-oasis-900">{{ formatCfa(option.price) }}</span>
+          </li>
+        }
+      </ul>
+    }
+
+    @if (item().note) {
+      <p class="mt-4 text-xs font-extrabold uppercase tracking-wider text-mango-600">
+        {{ item().note }}
+      </p>
+    }
+  </div>
+</article>
