@@ -1,0 +1,145 @@
+<section class="relative isolate overflow-hidden bg-oasis-950 px-4 py-16 text-white sm:px-6 lg:px-8 lg:py-24">
+  <div class="noise-overlay absolute inset-0 opacity-40"></div>
+  <div class="absolute -right-28 -top-28 size-96 rounded-full bg-mango-500/20 blur-3xl"></div>
+  <div class="relative mx-auto max-w-7xl">
+    <a routerLink="/" class="inline-flex items-center gap-2 text-sm font-bold text-cream-200/75 transition hover:text-gold-500">
+      <svg lucideArrowLeft aria-hidden="true" class="size-4"></svg>
+      Retour à l’accueil
+    </a>
+    <div class="mt-10 grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
+      <div>
+        <p class="text-xs font-extrabold uppercase tracking-[0.28em] text-gold-500">Notre menu</p>
+        <h1 class="text-balance mt-4 max-w-4xl font-display text-5xl font-bold leading-tight sm:text-6xl lg:text-7xl">
+          Trouvez votre prochaine envie.
+        </h1>
+        <p class="mt-6 max-w-2xl text-base leading-8 text-cream-200/75 sm:text-lg">
+          Recherchez un plat ou explorez le menu par catégorie. Les prix affichés sont ceux lisibles sur les supports fournis.
+        </p>
+      </div>
+      <div class="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-5 py-4 backdrop-blur-md">
+        <svg lucideUtensilsCrossed aria-hidden="true" class="size-6 text-mango-500"></svg>
+        <div>
+          <p class="text-2xl font-extrabold text-white">{{ filteredItems().length }}</p>
+          <p class="text-xs font-bold uppercase tracking-wider text-cream-200/60">résultats</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sticky top-20 z-30 border-b border-oasis-950/10 bg-cream-50/95 px-4 py-5 backdrop-blur-xl sm:px-6 lg:top-24 lg:px-8">
+  <div class="mx-auto max-w-7xl">
+    <label class="relative block">
+      <span class="sr-only">Rechercher dans le menu</span>
+      <svg lucideSearch aria-hidden="true" class="pointer-events-none absolute left-5 top-1/2 size-5 -translate-y-1/2 text-oasis-700"></svg>
+      <input
+        type="search"
+        placeholder="Rechercher un plat, une boisson…"
+        autocomplete="off"
+        class="h-14 w-full rounded-2xl border border-oasis-950/15 bg-white pl-14 pr-5 text-base font-semibold text-oasis-950 shadow-sm outline-none transition placeholder:font-normal placeholder:text-oasis-800/70 focus:border-mango-500 focus:ring-4 focus:ring-mango-500/10"
+        data-testid="menu-search"
+        [value]="searchTerm()"
+        (input)="onSearch($event)"
+      />
+    </label>
+
+    <div class="mt-4 flex gap-2 overflow-x-auto pb-1" aria-label="Filtrer par catégorie">
+      <button
+        type="button"
+        class="shrink-0 rounded-full px-5 py-2.5 text-sm font-extrabold transition"
+        [class.bg-oasis-900]="activeCategory() === 'all'"
+        [class.text-white]="activeCategory() === 'all'"
+        [class.bg-cream-200]="activeCategory() !== 'all'"
+        [class.text-oasis-800]="activeCategory() !== 'all'"
+        data-testid="category-all"
+        (click)="selectCategory('all')"
+      >
+        Tout
+      </button>
+      @for (category of categories; track category.id) {
+        <button
+          type="button"
+          class="shrink-0 rounded-full px-5 py-2.5 text-sm font-extrabold transition"
+          [class.bg-oasis-900]="activeCategory() === category.id"
+          [class.text-white]="activeCategory() === category.id"
+          [class.bg-cream-200]="activeCategory() !== category.id"
+          [class.text-oasis-800]="activeCategory() !== category.id"
+          [attr.data-testid]="'category-' + category.id"
+          (click)="selectCategory(category.id)"
+        >
+          {{ category.shortLabel }}
+        </button>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="bg-cream-50 px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+  <div class="mx-auto max-w-7xl">
+    @if (groupedItems().length > 0) {
+      <div class="space-y-20">
+        @for (group of groupedItems(); track group.category.id) {
+          <section [attr.aria-labelledby]="'category-title-' + group.category.id">
+            <div class="mb-8 flex flex-col gap-3 border-b border-oasis-950/10 pb-6 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p class="text-xs font-extrabold uppercase tracking-[0.22em] text-mango-600">
+                  {{ group.items.length }} choix
+                </p>
+                <h2
+                  [id]="'category-title-' + group.category.id"
+                  class="mt-2 font-display text-4xl font-bold text-oasis-950"
+                >
+                  {{ group.category.label }}
+                </h2>
+              </div>
+              <p class="max-w-lg text-sm leading-6 text-oasis-800/80">{{ group.category.description }}</p>
+            </div>
+            <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+              @for (item of group.items; track item.id) {
+                <app-menu-item [item]="item" />
+              }
+            </div>
+          </section>
+        }
+      </div>
+    } @else {
+      <div class="mx-auto max-w-xl rounded-[2rem] border border-dashed border-oasis-900/25 bg-cream-100 px-6 py-16 text-center">
+        <span class="mx-auto grid size-16 place-items-center rounded-full bg-oasis-900 text-white">
+          <svg lucideSearch aria-hidden="true" class="size-7"></svg>
+        </span>
+        <h2 class="mt-6 font-display text-3xl font-bold text-oasis-950">Aucun résultat</h2>
+        <p class="mt-3 leading-7 text-oasis-800/80">
+          Essayez un autre mot ou réinitialisez la recherche pour afficher tout le menu.
+        </p>
+        <button
+          type="button"
+          class="mt-7 inline-flex items-center gap-2 rounded-full bg-mango-500 px-6 py-3 font-extrabold text-white transition hover:bg-oasis-900"
+          data-testid="clear-filters"
+          (click)="clearFilters()"
+        >
+          <svg lucideRotateCcw aria-hidden="true" class="size-4"></svg>
+          Réinitialiser
+        </button>
+      </div>
+    }
+  </div>
+</section>
+
+<section class="bg-cream-100 px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+  <div class="mx-auto max-w-7xl">
+    <div class="flex items-center gap-3 text-mango-600">
+      <svg lucideImages aria-hidden="true" class="size-6"></svg>
+      <span class="text-xs font-extrabold uppercase tracking-[0.24em]">Cartes originales</span>
+    </div>
+    <div class="mt-4">
+      <app-section-title
+        eyebrow="Supports du restaurant"
+        title="Consulter les affiches"
+        description="Les supports visuels d’origine restent disponibles pour vérifier les intitulés et les tarifs. Touchez une affiche pour l’agrandir."
+      />
+    </div>
+    <div class="mt-12">
+      <app-image-lightbox [images]="restaurant.menuPosters" />
+    </div>
+  </div>
+</section>

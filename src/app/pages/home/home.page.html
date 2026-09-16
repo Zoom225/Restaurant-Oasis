@@ -1,0 +1,257 @@
+<section class="hero-stage relative isolate overflow-hidden bg-oasis-950 text-white">
+  <div class="noise-overlay absolute inset-0 opacity-40"></div>
+  <div class="hero-glow hero-glow-left absolute -left-40 top-24 size-96 rounded-full bg-mango-500/20 blur-3xl"></div>
+  <div class="hero-glow hero-glow-right absolute -right-32 bottom-0 size-96 rounded-full bg-gold-500/15 blur-3xl"></div>
+
+  <div class="relative mx-auto grid min-h-[calc(100svh-5rem)] max-w-7xl items-center gap-14 px-4 py-16 sm:px-6 lg:min-h-[calc(100svh-6rem)] lg:grid-cols-[0.9fr_1.1fr] lg:px-8 lg:py-20">
+    <div class="hero-copy">
+      <div class="hero-reveal hero-reveal-1 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.18em] text-gold-500 backdrop-blur-md">
+        <svg lucideMapPin aria-hidden="true" class="size-4"></svg>
+        Restaurant-grill à Bassam
+      </div>
+
+      <h1 class="hero-reveal hero-reveal-2 text-balance mt-7 font-display text-5xl font-bold leading-[0.98] sm:text-6xl lg:text-7xl xl:text-[5.5rem]">
+        Une oasis de
+        <span class="hero-highlight text-gold-500">saveurs</span>
+        à partager.
+      </h1>
+      <p class="hero-reveal hero-reveal-3 mt-7 max-w-xl text-pretty text-base leading-8 text-cream-200/80 sm:text-lg">
+        Poissons, fruits de mer, grillades et recettes africaines généreuses dans une atmosphère chaleureuse et tropicale.
+      </p>
+
+      <div class="hero-reveal hero-reveal-4 mt-9 flex flex-col gap-3 sm:flex-row">
+        <a
+          routerLink="/menu"
+          data-testid="hero-menu-link"
+          class="inline-flex items-center justify-center gap-2 rounded-full bg-gold-500 px-7 py-4 font-extrabold text-wine-950 shadow-oasis transition hover:-translate-y-1 hover:bg-mango-500 hover:text-white"
+        >
+          <svg lucideUtensilsCrossed aria-hidden="true" class="size-5"></svg>
+          Découvrir le menu
+        </a>
+        <a
+          href="#galerie"
+          class="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-4 font-bold text-white backdrop-blur-md transition hover:border-white/40 hover:bg-white/10"
+        >
+          Voir les créations
+          <svg lucideArrowRight aria-hidden="true" class="size-5"></svg>
+        </a>
+      </div>
+
+      <div class="hero-reveal hero-reveal-5 mt-12 flex flex-wrap gap-x-8 gap-y-4 border-t border-white/15 pt-7 text-sm font-bold text-cream-200/80">
+        <span class="flex items-center gap-2">
+          <svg lucideFish aria-hidden="true" class="size-5 text-mango-500"></svg>
+          Produits de la mer
+        </span>
+        <span class="flex items-center gap-2">
+          <svg lucideFlame aria-hidden="true" class="size-5 text-mango-500"></svg>
+          Grillades
+        </span>
+        <span class="flex items-center gap-2">
+          <svg lucideGlassWater aria-hidden="true" class="size-5 text-mango-500"></svg>
+          Cocktails tropicaux
+        </span>
+      </div>
+    </div>
+
+    <div class="hero-collage relative mx-auto grid w-full max-w-2xl grid-cols-5 grid-rows-6 gap-3 lg:ml-auto">
+      <div class="hero-card hero-card-main relative col-span-3 row-span-5 min-h-[30rem] overflow-hidden rounded-[2.25rem] border border-white/10 bg-white/5 shadow-2xl">
+        <img
+          [ngSrc]="restaurant.heroImages[0]!.src"
+          [alt]="restaurant.heroImages[0]!.alt"
+          class="hero-image hero-image-main object-cover"
+          sizes="(min-width: 1024px) 30vw, 60vw"
+          fill
+          priority
+        />
+      </div>
+      <div class="hero-card hero-card-top relative col-span-2 row-span-3 overflow-hidden rounded-[2rem] border border-white/10 shadow-2xl">
+        <img
+          [ngSrc]="restaurant.heroImages[1]!.src"
+          [alt]="restaurant.heroImages[1]!.alt"
+          class="hero-image hero-image-secondary object-cover"
+          sizes="(min-width: 1024px) 20vw, 40vw"
+          fill
+          priority
+        />
+      </div>
+      <div class="hero-card hero-card-bottom relative col-span-2 row-span-3 overflow-hidden rounded-[2rem] border border-white/10 shadow-2xl">
+        <img
+          [ngSrc]="restaurant.heroImages[2]!.src"
+          [alt]="restaurant.heroImages[2]!.alt"
+          class="hero-image hero-image-secondary object-cover"
+          sizes="(min-width: 1024px) 20vw, 40vw"
+          fill
+          priority
+        />
+      </div>
+      <div class="hero-promise col-span-3 row-span-1 flex items-center gap-3 rounded-2xl bg-gold-500 px-5 py-4 text-wine-950 shadow-xl">
+        <svg lucideSparkles aria-hidden="true" class="size-5 shrink-0"></svg>
+        <span class="text-sm font-extrabold">Cuisine généreuse · esprit convivial</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-cream-50 px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+  <div class="mx-auto max-w-7xl">
+    <app-section-title
+      eyebrow="L’esprit Oasis"
+      title="La générosité au centre de la table"
+      description="Une cuisine africaine contemporaine, vivante et faite pour être partagée. Chaque assiette célèbre les produits, les couleurs et les goûts francs."
+      align="center"
+    />
+
+    <div class="mt-14 grid gap-5 md:grid-cols-3">
+      <article class="rounded-[2rem] bg-white p-7 shadow-soft">
+        <span class="grid size-14 place-items-center rounded-2xl bg-oasis-900 text-white">
+          <svg lucideChefHat aria-hidden="true" class="size-7"></svg>
+        </span>
+        <h2 class="mt-6 font-display text-2xl font-bold text-oasis-950">Cuisine africaine</h2>
+        <p class="mt-3 leading-7 text-oasis-800/80">
+          Des recettes emblématiques et des plats mijotés servis avec caractère.
+        </p>
+      </article>
+      <article class="rounded-[2rem] bg-oasis-900 p-7 text-white shadow-oasis">
+        <span class="grid size-14 place-items-center rounded-2xl bg-mango-500 text-white">
+          <svg lucideFlame aria-hidden="true" class="size-7"></svg>
+        </span>
+        <h2 class="mt-6 font-display text-2xl font-bold">Le goût du grill</h2>
+        <p class="mt-3 leading-7 text-cream-200/75">
+          Poissons et sélections grillées, préparés pour préserver toute leur gourmandise.
+        </p>
+      </article>
+      <article class="rounded-[2rem] bg-white p-7 shadow-soft">
+        <span class="grid size-14 place-items-center rounded-2xl bg-gold-500 text-wine-950">
+          <svg lucideGlassWater aria-hidden="true" class="size-7"></svg>
+        </span>
+        <h2 class="mt-6 font-display text-2xl font-bold text-oasis-950">Fraîcheur tropicale</h2>
+        <p class="mt-3 leading-7 text-oasis-800/80">
+          Jus naturels et cocktails colorés complètent l’expérience Oasis.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="overflow-hidden bg-cream-100 px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+  <div class="mx-auto max-w-7xl">
+    <div class="grid items-end gap-8 lg:grid-cols-[1fr_auto]">
+      <app-section-title
+        eyebrow="Nos signatures"
+        title="Des plats qui rassemblent"
+        description="Quelques créations généreuses photographiées à Espace Oasis. Retrouvez les compositions et les prix dans le menu."
+      />
+      <a
+        routerLink="/menu"
+        class="inline-flex items-center gap-2 font-extrabold text-oasis-900 transition hover:text-mango-600"
+      >
+        Voir tout le menu
+        <svg lucideArrowRight aria-hidden="true" class="size-5"></svg>
+      </a>
+    </div>
+
+    <div class="mt-12 grid gap-6 md:grid-cols-3">
+      @for (item of featuredItems; track item.id; let index = $index) {
+        @if (item.image; as image) {
+          <a
+            routerLink="/menu"
+            [queryParams]="{ recherche: item.name }"
+            class="group relative min-h-[28rem] overflow-hidden rounded-[2.25rem] bg-oasis-950 shadow-soft"
+          >
+            <img
+              [ngSrc]="image.src"
+              [alt]="image.alt"
+              class="object-cover transition duration-700 group-hover:scale-105"
+              sizes="(min-width: 768px) 33vw, 100vw"
+              fill
+              loading="lazy"
+            />
+            <span class="absolute inset-0 bg-gradient-to-t from-oasis-950 via-oasis-950/10 to-transparent"></span>
+            <span class="absolute inset-x-0 bottom-0 p-7 text-white">
+              <span class="text-xs font-extrabold uppercase tracking-[0.22em] text-gold-500">
+                Signature 0{{ index + 1 }}
+              </span>
+              <span class="mt-3 block font-display text-3xl font-bold">{{ item.name }}</span>
+              <span class="mt-3 flex items-center gap-2 text-sm font-bold text-cream-200/80">
+                Découvrir
+                <svg lucideArrowRight aria-hidden="true" class="size-4 transition group-hover:translate-x-1"></svg>
+              </span>
+            </span>
+          </a>
+        }
+      }
+    </div>
+  </div>
+</section>
+
+<section id="galerie" class="scroll-mt-24 bg-cream-50 px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+  <div class="mx-auto max-w-7xl">
+    <app-section-title
+      eyebrow="Galerie"
+      title="Les couleurs d’Espace Oasis"
+      description="Plats généreux, grillades et cocktails : un aperçu en images de l’expérience Oasis."
+    />
+    <div class="mt-12">
+      <app-image-lightbox [images]="restaurant.gallery" />
+    </div>
+  </div>
+</section>
+
+<section id="nous-trouver" class="scroll-mt-24 bg-wine-950 px-4 py-20 text-white sm:px-6 lg:px-8 lg:py-28">
+  <div class="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+    <div>
+      <p class="text-xs font-extrabold uppercase tracking-[0.28em] text-gold-500">Nous trouver</p>
+      <h2 class="text-balance mt-4 font-display text-4xl font-bold sm:text-5xl lg:text-6xl">
+        Votre escale gourmande à Bassam.
+      </h2>
+      <p class="mt-6 max-w-xl text-lg leading-8 text-cream-200/75">
+        Retrouvez Espace Oasis au quartier France, juste à la descente du pont à gauche.
+      </p>
+
+      @if (restaurant.location.mapUrl) {
+        <a
+          [href]="restaurant.location.mapUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-8 inline-flex items-center gap-2 rounded-full bg-gold-500 px-7 py-4 font-extrabold text-wine-950"
+        >
+          <svg lucideMapPin aria-hidden="true" class="size-5"></svg>
+          Ouvrir dans Google Maps
+        </a>
+      }
+
+      @if (restaurant.contact.phone) {
+        <a [href]="'tel:' + restaurant.contact.phone" data-testid="phone-button">
+          Appeler le restaurant
+        </a>
+      }
+
+      @if (restaurant.contact.whatsapp) {
+        <a
+          [href]="restaurant.contact.whatsapp"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-testid="whatsapp-button"
+          class="ml-3 mt-8 inline-flex items-center gap-2 rounded-full bg-[#25d366] px-7 py-4 font-extrabold text-white transition hover:-translate-y-1 hover:bg-[#1fbd5b]"
+        >
+          <svg viewBox="0 0 32 32" aria-hidden="true" class="size-5 fill-current">
+            <path d="M16.04 3C8.87 3 3.05 8.76 3.05 15.86c0 2.26.6 4.47 1.72 6.4L3 28.67l6.6-1.72a13.1 13.1 0 0 0 6.43 1.63h.01c7.16 0 13-5.77 13-12.86C29.04 8.63 23.21 3 16.04 3Zm0 23.4a10.9 10.9 0 0 1-5.55-1.5l-.4-.23-3.92 1.02 1.05-3.78-.26-.39a10.57 10.57 0 0 1-1.7-5.66c0-5.88 4.84-10.67 10.79-10.67 5.94 0 10.78 4.72 10.78 10.6 0 5.89-4.84 10.61-10.79 10.61Zm5.92-7.95c-.32-.16-1.92-.94-2.22-1.05-.3-.1-.51-.16-.73.16-.21.32-.83 1.05-1.02 1.26-.19.22-.38.24-.7.08-.33-.16-1.37-.5-2.6-1.58a9.64 9.64 0 0 1-1.8-2.21c-.19-.32-.02-.5.14-.66.15-.14.33-.37.49-.56.16-.18.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.73-1.74-1-2.38-.26-.63-.53-.54-.73-.55h-.62c-.22 0-.57.08-.87.4-.3.32-1.13 1.1-1.13 2.68s1.16 3.11 1.32 3.32c.16.21 2.28 3.44 5.52 4.82.77.33 1.37.53 1.84.68.77.24 1.47.21 2.03.13.62-.1 1.92-.78 2.19-1.53.27-.75.27-1.4.19-1.53-.08-.14-.3-.22-.62-.38Z" />
+          </svg>
+          Réserver : 07 57 23 82 17
+        </a>
+      }
+    </div>
+
+    <div class="relative min-h-96 overflow-hidden rounded-[2.5rem] border border-white/10 bg-oasis-900 shadow-2xl">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d63574.60798809563!2d-3.8132956513671865!3d5.197594100000008!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0xfc203005773f565%3A0x11469db7fbb5ca6b!2sEspace%20OASIS%201er%20-%20Grand%20Bassam%2C%20Grand-Bassam%2C%20C%C3%B4te%20d%E2%80%99Ivoire!3m2!1d5.1973986!2d-3.7370951999999997!5e0!3m2!1sfr!2sbe!4v1789489181257!5m2!1sfr!2sbe"
+        title="Localisation d’Espace Oasis 1er à Grand-Bassam"
+        class="absolute inset-0 size-full"
+        style="border: 0"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"
+      ></iframe>
+    </div>
+  </div>
+</section>
