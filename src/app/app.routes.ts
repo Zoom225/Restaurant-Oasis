@@ -21,9 +21,9 @@ export const routes: Routes = [
       import('./pages/menu/menu.page').then((module) => module.MenuPageComponent),
     data: {
       seo: {
-        title: 'La carte | Espace Oasis à Bassam',
+        title: 'Menu | Espace Oasis à Bassam',
         description:
-          'Consultez la carte complète d’Espace Oasis : spécialités, cocktails, jus naturels, boissons, liqueurs et vins.',
+          'Consultez le menu complet d’Espace Oasis : spécialités, cocktails, jus naturels, boissons, liqueurs et vins.',
       } satisfies SeoData,
     },
   },

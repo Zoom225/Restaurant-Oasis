@@ -42,4 +42,35 @@ describe('MenuPageComponent', () => {
     expect(pageText).toContain('Beaufort');
     expect(pageText).not.toContain('Mojito nature');
   });
+
+  it('recherche dans tout le menu même après la sélection d’une catégorie', () => {
+    const beersButton = fixture.nativeElement.querySelector(
+      '[data-testid="category-bieres"]',
+    ) as HTMLButtonElement;
+    beersButton.click();
+
+    const input = fixture.nativeElement.querySelector(
+      '[data-testid="menu-search"]',
+    ) as HTMLInputElement;
+    input.value = 'mojito fraise';
+    input.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+
+    const pageText = fixture.nativeElement.textContent as string;
+    expect(pageText).toContain('Mojito fraise');
+    expect(fixture.componentInstance.activeCategory()).toBe('all');
+  });
+
+  it('accepte les variantes avec accents, apostrophes et mots séparés', () => {
+    const input = fixture.nativeElement.querySelector(
+      '[data-testid="menu-search"]',
+    ) as HTMLInputElement;
+    input.value = 'saveur afrique clementine';
+    input.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.textContent).toContain(
+      'Saveur d’Afrique — Clémentine',
+    );
+  });
 });

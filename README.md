@@ -1,129 +1,305 @@
-# Espace Oasis
+# Espace Oasis 1er
 
-Site officiel frontend d’Espace Oasis, restaurant-grill à Bassam. L’application est entièrement statique : aucun backend, aucune API applicative et aucune base de données.
+Site vitrine du restaurant-grill **Espace Oasis 1er**, situé à Grand-Bassam en Côte d’Ivoire. Le projet présente le restaurant, ses spécialités, son menu, ses boissons, sa galerie, sa localisation Google Maps et ses moyens de réservation.
 
-## Technologies
+Le site est une application Angular statique : il ne nécessite ni backend ni base de données.
 
-- Angular 22 en composants standalone et TypeScript strict
-- Angular Router avec routes chargées à la demande
-- Angular Signals pour le menu mobile, la recherche et les filtres
-- Tailwind CSS 4 pour toute la présentation
-- Lucide Angular pour les icônes
-- Vitest via le builder de tests Angular
-- Prérendu statique des routes `/`, `/menu` et `/404`
-- Déploiement Vercel depuis GitHub
+## Fonctionnalités
 
-## Prérequis
+- page d’accueil animée et adaptée aux mobiles ;
+- présentation des plats et boissons ;
+- menu filtrable par catégorie avec recherche ;
+- images uniques optimisées en WebP et AVIF ;
+- carte Google Maps intégrée ;
+- réservation directe par WhatsApp au `07 57 23 82 17` ;
+- liens Facebook et TikTok ;
+- métadonnées SEO et données structurées de type `Restaurant` ;
+- pages statiques précompilées pour `/`, `/menu` et `/404`.
 
-- Node.js 24.15.0 ou version 24 plus récente compatible
-- npm 11+
-- Git
-- GitHub CLI pour le workflow issues/branches/pull requests
+## Technologies utilisées
 
-La version Node attendue est enregistrée dans `.node-version` et `.nvmrc`.
+- Angular 22 avec composants standalone ;
+- TypeScript en mode strict ;
+- Angular Router ;
+- Angular Signals ;
+- Tailwind CSS 4 ;
+- Lucide Angular ;
+- Sharp pour l’optimisation des images ;
+- Vitest pour les tests ;
+- Cloudflare Quick Tunnel pour les aperçus temporaires ;
+- Vercel pour un éventuel hébergement permanent.
 
-## Installation et vérification
+## Processus de création du site
 
-```bash
+### 1. Préparation de la structure
+
+Le projet a été organisé en plusieurs parties :
+
+```text
+src/app/
+├── core/                 Modèles, configuration et services SEO
+├── layout/               En-tête, navigation mobile et pied de page
+├── pages/
+│   ├── home/             Page d’accueil
+│   ├── menu/             Menu et filtres
+│   └── not-found/        Page 404
+└── shared/
+    ├── components/       Composants réutilisables
+    ├── data/             Informations du restaurant et produits
+    └── utils/            Fonctions utilitaires
+```
+
+Les informations générales du restaurant sont centralisées dans :
+
+```text
+src/app/shared/data/restaurant.data.ts
+```
+
+Les plats, boissons, prix, descriptions et images du menu sont centralisés dans :
+
+```text
+src/app/shared/data/menu.data.ts
+```
+
+Le type d’un produit du menu est défini dans :
+
+```text
+src/app/core/models/menu-item.model.ts
+```
+
+### 2. Création de l’identité visuelle
+
+La palette associe le vert profond, l’or, l’orange mangue, le bordeaux et des tons crème. La page d’accueil utilise des animations progressives, des mouvements 3D légers et des rotations lentes sur les plats.
+
+Les animations respectent automatiquement le réglage système `prefers-reduced-motion` afin de rester accessibles.
+
+### 3. Création et optimisation des images
+
+Les visuels des plats et boissons sont enregistrés dans :
+
+```text
+src/assets/images/
+```
+
+Chaque produit dispose d’une image distincte. Les fichiers WebP et AVIF réduisent le poids du site tout en conservant une bonne qualité visuelle.
+
+Pour relancer l’optimisation des images :
+
+```powershell
+npm run optimize:images
+```
+
+Les planches utilisées pour produire les images individuelles du menu peuvent être redécoupées avec :
+
+```powershell
+node scripts/split-menu-contact-sheets.mjs
+```
+
+### 4. Ajout du contenu commercial
+
+Les éléments suivants ont été intégrés :
+
+- adresse et carte Google Maps de Grand-Bassam ;
+- numéro de réservation WhatsApp ;
+- message WhatsApp de réservation prérempli ;
+- compte TikTok officiel ;
+- page Facebook officielle ;
+- plats, boissons, prix et descriptions.
+
+### 5. Vérification et compilation
+
+Le projet exige **Node.js 24.15.0** ou une version 24 compatible plus récente. Cette version est indiquée dans `.nvmrc` et `.node-version`.
+
+Installation et vérification :
+
+```powershell
 npm install
 npm run lint
 npm run test -- --run
 npm run build
 ```
 
-Le builder Angular 22 utilise Vitest nativement. Le petit lanceur `scripts/run-tests.mjs` conserve la commande `--run` du cahier des charges, option qui n’est plus exposée directement par la CLI Angular.
+Le résultat compilé est créé dans :
 
-Pour travailler localement :
+```text
+dist/espace-oasis/browser
+```
 
-```bash
+Pour travailler localement avec rechargement automatique :
+
+```powershell
 npm start
 ```
 
-## Architecture
+Le site local est généralement disponible à l’adresse `http://localhost:4200`.
 
-```text
-src/
-├── app/
-│   ├── core/
-│   │   ├── config/
-│   │   ├── models/
-│   │   └── services/
-│   ├── layout/
-│   │   ├── footer/
-│   │   ├── header/
-│   │   └── mobile-navigation/
-│   ├── pages/
-│   │   ├── home/
-│   │   ├── menu/
-│   │   └── not-found/
-│   └── shared/
-│       ├── components/
-│       ├── data/
-│       └── utils/
-└── assets/images/
-    ├── dishes/
-    ├── drinks/
-    ├── hero/
-    ├── logo/
-    ├── menu/
-    └── team/
-```
+## Créer un lien temporaire pour un client distant
 
-Les informations publiques sont centralisées dans `restaurant.data.ts` et la carte dans `menu.data.ts`. Une coordonnée non confirmée reste vide dans les données et n’est pas rendue dans le site.
+Cette procédure permet d’envoyer au client une URL publique en `https://….trycloudflare.com`. Le client peut consulter le site depuis un téléphone ou un ordinateur sans être connecté au même réseau.
 
-## Images
+### Limites importantes
 
-Les sources fournies sont classées par usage. `npm run optimize:images` produit les déclinaisons WebP et AVIF, corrige l’orientation et recadre les marques de téléphone présentes en bas de certaines photos. Les fichiers sources ne sont pas copiés dans le build public.
+- Un Quick Tunnel Cloudflare ne possède pas de durée automatique de 24 heures.
+- Le lien fonctionne tant que le serveur local et `cloudflared` restent actifs.
+- L’ordinateur doit rester allumé, connecté à Internet et ne pas se mettre en veille.
+- L’adresse peut cesser de fonctionner si un processus est fermé ou si la connexion Internet est interrompue.
+- Cloudflare ne garantit pas la disponibilité des Quick Tunnels gratuits.
+- Pour arrêter l’aperçu après 24 heures, il faut fermer manuellement les deux processus.
 
-## SEO statique
+### Étape 1 — Compiler la dernière version
 
-Le build ajoute les titres, descriptions, Open Graph, Twitter Cards et les données structurées Schema.org `Restaurant`. Il génère aussi un vrai `404.html` pour Vercel.
-
-Le domaine public n’étant pas encore confirmé, les URL canoniques sont calculées depuis le domaine réel dans le navigateur. Lors d’un déploiement Vercel, `scripts/finalize-static-build.mjs` utilise `VERCEL_PROJECT_PRODUCTION_URL` pour produire `sitemap.xml` et compléter `robots.txt`. En dehors de Vercel, définir `SITE_URL` avant le build :
-
-```bash
-SITE_URL=https://domaine-confirme.example npm run build
-```
-
-## Vercel
-
-La configuration vérifiée est enregistrée dans `vercel.json` :
-
-- Framework Preset : Angular
-- Install Command : `npm install`
-- Build Command : `npm run build`
-- Output Directory : `dist/espace-oasis/browser`
-- Node.js : 24.x
-
-Aucune réécriture SPA globale n’est nécessaire : `/` et `/menu` sont des fichiers prérendus et `404.html` est servi par Vercel pour les URL inconnues.
-
-Avec l’intégration Git Vercel, chaque pull request reçoit un déploiement Preview et toute fusion dans `main` déclenche la Production.
-
-## Workflow GitHub
-
-1. Créer ou choisir une issue.
-2. Créer la branche associée.
-3. Utiliser des commits conventionnels.
-4. Ouvrir une pull request vers `main`.
-5. Attendre le workflow `Qualité frontend` et la Preview Vercel.
-6. Vérifier puis fusionner.
-
-Branches prévues :
-
-- `feature/1-angular-setup`
-- `feature/2-brand-assets`
-- `feature/3-homepage`
-- `feature/4-menu-page`
-- `feature/5-seo-accessibility`
-- `test/6-tests-documentation`
-- `chore/7-vercel-deployment`
-
-Après authentification avec `gh auth login`, les sept issues peuvent être créées de façon idempotente avec :
+Toujours reconstruire le site avant de l’envoyer au client :
 
 ```powershell
-./scripts/create-github-issues.ps1
+npm run build
 ```
 
-## Informations encore à confirmer
+Cela garantit que les dernières modifications sont présentes dans `dist/espace-oasis/browser`.
 
-Ces éléments ne sont volontairement pas publiés : numéro de téléphone, WhatsApp, horaires, lien Google Maps exact, réseaux sociaux et identité/photo de la responsable. Ils peuvent être ajoutés uniquement après confirmation officielle.
+### Étape 2 — Installer Cloudflared
+
+Avec `winget` :
+
+```powershell
+winget install --id Cloudflare.cloudflared -e
+```
+
+Si `winget` n’est pas disponible, télécharger le programme officiel :
+
+```powershell
+New-Item -ItemType Directory -Force -Path ".tmp/cloudflare"
+Invoke-WebRequest `
+  -Uri "https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-windows-amd64.exe" `
+  -OutFile ".tmp/cloudflare/cloudflared.exe"
+```
+
+Le dossier `.tmp` est ignoré par Git et ne sera pas publié avec le projet.
+
+### Étape 3 — Démarrer le serveur local
+
+Le projet fournit un serveur statique compatible avec les routes Angular :
+
+```powershell
+node scripts/temporary-static-server.mjs
+```
+
+Le terminal doit afficher :
+
+```text
+Temporary preview on http://127.0.0.1:4173
+```
+
+Conserver cette fenêtre PowerShell ouverte.
+
+### Étape 4 — Créer le tunnel public
+
+Ouvrir une deuxième fenêtre PowerShell dans le dossier du projet.
+
+Si Cloudflared a été installé avec `winget` :
+
+```powershell
+cloudflared tunnel --url http://127.0.0.1:4173 --no-autoupdate
+```
+
+Si le fichier a été téléchargé dans `.tmp` :
+
+```powershell
+./.tmp/cloudflare/cloudflared.exe tunnel --url http://127.0.0.1:4173 --no-autoupdate
+```
+
+Cloudflare affiche ensuite une adresse semblable à :
+
+```text
+https://exemple-aleatoire.trycloudflare.com
+```
+
+C’est ce lien qu’il faut envoyer au client.
+
+### Étape 5 — Vérifier le lien avant l’envoi
+
+Dans une troisième fenêtre PowerShell :
+
+```powershell
+$url = "https://exemple-aleatoire.trycloudflare.com"
+$response = Invoke-WebRequest -Uri $url -UseBasicParsing
+$response.StatusCode
+```
+
+Le résultat attendu est :
+
+```text
+200
+```
+
+Vérifier également le lien sur un téléphone en utilisant les données mobiles, ce qui confirme qu’il est bien accessible depuis un réseau extérieur.
+
+### Étape 6 — Maintenir le lien pendant 24 heures
+
+Pendant la présentation au client :
+
+1. laisser ouvertes les fenêtres du serveur Node et de Cloudflared ;
+2. garder l’ordinateur branché au secteur ;
+3. désactiver temporairement la mise en veille automatique ;
+4. ne pas changer de réseau Wi-Fi ;
+5. conserver l’adresse envoyée au client.
+
+Une nouvelle exécution de Cloudflared produit généralement une nouvelle adresse. Si le tunnel est redémarré, il faut donc envoyer le nouveau lien au client.
+
+### Étape 7 — Fermer le lien après 24 heures
+
+Dans les deux fenêtres PowerShell actives, utiliser :
+
+```text
+Ctrl + C
+```
+
+Le premier arrêt ferme le tunnel public. Le second arrête le serveur local. Le lien transmis au client devient alors inaccessible.
+
+Si les processus ont été lancés en arrière-plan, les retrouver ainsi :
+
+```powershell
+Get-Process cloudflared,node
+```
+
+Puis les arrêter en utilisant leurs identifiants exacts :
+
+```powershell
+Stop-Process -Id <ID_CLOUDFLARED>
+Stop-Process -Id <ID_NODE>
+```
+
+Toujours vérifier les identifiants avant l’arrêt afin de ne pas fermer un autre projet Node en cours d’utilisation.
+
+## Aperçu temporaire ou hébergement permanent ?
+
+Le Quick Tunnel convient pour une démonstration ponctuelle. Pour un site disponible en permanence, il est préférable de déployer le projet sur Vercel ou un hébergeur équivalent.
+
+Le fichier `vercel.json` contient déjà la configuration principale :
+
+- framework : Angular ;
+- commande de build : `npm run build` ;
+- dossier publié : `dist/espace-oasis/browser` ;
+- version de Node.js : 24.x.
+
+## Sécurité
+
+- Ne jamais placer de clé privée ou de mot de passe dans le dépôt.
+- Le Quick Tunnel expose uniquement le serveur lancé sur le port `4173`.
+- Ne pas utiliser ce tunnel comme hébergement de production.
+- Fermer le tunnel dès que la démonstration est terminée.
+- Vérifier le contenu du site avant de transmettre l’adresse publique.
+
+## Résumé rapide du partage client
+
+```powershell
+npm run build
+node scripts/temporary-static-server.mjs
+```
+
+Dans un deuxième terminal :
+
+```powershell
+./.tmp/cloudflare/cloudflared.exe tunnel --url http://127.0.0.1:4173 --no-autoupdate
+```
+
+Envoyer l’adresse `https://….trycloudflare.com`, laisser le PC allumé pendant la présentation, puis arrêter les deux commandes avec `Ctrl + C` après 24 heures.

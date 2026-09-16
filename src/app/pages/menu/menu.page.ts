@@ -49,19 +49,30 @@ export class MenuPageComponent {
 
   readonly filteredItems = computed(() => {
     const query = normalizeSearchText(this.searchTerm().trim());
+    const queryWords = query.split(' ').filter(Boolean);
     const category = this.activeCategory();
 
     return MENU_ITEMS.filter((item) => {
-      const matchesCategory = category === 'all' || item.category === category;
+      const itemCategory = this.categories.find(
+        (menuCategory) => menuCategory.id === item.category,
+      );
       const searchableText = normalizeSearchText(
         [
           item.name,
           item.description ?? '',
           item.note ?? '',
+          itemCategory?.label ?? '',
+          itemCategory?.shortLabel ?? '',
           ...(item.options?.map((option) => option.label) ?? []),
         ].join(' '),
       );
-      return matchesCategory && (!query || searchableText.includes(query));
+      const matchesCategory =
+        query.length > 0 || category === 'all' || item.category === category;
+      const matchesSearch =
+        queryWords.length === 0 ||
+        queryWords.every((word) => searchableText.includes(word));
+
+      return matchesCategory && matchesSearch;
     });
   });
 
@@ -85,6 +96,9 @@ export class MenuPageComponent {
     const target = event.target;
     if (target instanceof HTMLInputElement) {
       this.searchTerm.set(target.value);
+      if (target.value.trim()) {
+        this.activeCategory.set('all');
+      }
     }
   }
 
