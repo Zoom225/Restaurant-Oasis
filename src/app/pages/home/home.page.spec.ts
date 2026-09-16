@@ -15,12 +15,17 @@ describe('HomePageComponent', () => {
     fixture.detectChanges();
   });
 
-  it('n’affiche aucun bouton téléphone ou WhatsApp sans coordonnées confirmées', () => {
-    expect(
-      fixture.nativeElement.querySelector('[data-testid="phone-button"]'),
-    ).toBeNull();
-    expect(
-      fixture.nativeElement.querySelector('[data-testid="whatsapp-button"]'),
-    ).toBeNull();
+  it('affiche les coordonnées confirmées pour réserver', () => {
+    const phoneButton = fixture.nativeElement.querySelector(
+      '[data-testid="phone-button"]',
+    ) as HTMLAnchorElement;
+    const whatsappButton = fixture.nativeElement.querySelector(
+      '[data-testid="whatsapp-button"]',
+    ) as HTMLAnchorElement;
+
+    expect(phoneButton.getAttribute('href')).toBe('tel:+2250757238217');
+    expect(whatsappButton.getAttribute('href')).toContain(
+      'https://wa.me/2250757238217',
+    );
   });
 });
