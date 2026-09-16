@@ -1,0 +1,528 @@
+import {
+  MenuCategory,
+  MenuItem,
+} from '../../core/models/menu-item.model';
+
+export const MENU_CATEGORIES: readonly MenuCategory[] = [
+  {
+    id: 'specialites',
+    label: 'Spécialités',
+    shortLabel: 'Spécialités',
+    description: 'Riz soumbala, kedjenou et recettes généreuses à partager.',
+  },
+  {
+    id: 'cocktails',
+    label: 'Cocktails',
+    shortLabel: 'Cocktails',
+    description: 'Mojitos et créations maison, avec ou sans alcool.',
+  },
+  {
+    id: 'jus',
+    label: 'Jus naturels',
+    shortLabel: 'Jus',
+    description: 'Des saveurs fruitées et locales servies bien fraîches.',
+  },
+  {
+    id: 'bieres',
+    label: 'Bières',
+    shortLabel: 'Bières',
+    description: 'La sélection de bières proposée par Espace Oasis.',
+  },
+  {
+    id: 'sans-alcool',
+    label: 'Sans alcool',
+    shortLabel: 'Softs',
+    description: 'Eaux, boissons gazeuses et boissons maltées.',
+  },
+  {
+    id: 'boissons-chaudes',
+    label: 'Boissons chaudes',
+    shortLabel: 'Chaudes',
+    description: 'Cafés, thé et infusions.',
+  },
+  {
+    id: 'liqueurs',
+    label: 'Liqueurs',
+    shortLabel: 'Liqueurs',
+    description: 'Spiritueux et saveurs d’Afrique servis en tournée.',
+  },
+  {
+    id: 'vins',
+    label: 'Vins',
+    shortLabel: 'Vins',
+    description: 'Une sélection de vins blancs, rouges et moelleux.',
+  },
+];
+
+const NATURAL_JUICES_IMAGE = {
+  src: 'assets/images/drinks/natural-juices.webp',
+  avifSrc: 'assets/images/drinks/natural-juices.avif',
+  width: 1200,
+  height: 1600,
+  alt: 'Assortiment de jus naturels de bissap, gingembre, passion, citron et multifruits',
+} as const;
+
+const MENU_ITEMS_SOURCE: readonly MenuItem[] = [
+  {
+    id: 'riz-soumbala',
+    name: 'Riz soumbala',
+    category: 'specialites',
+    description: 'Décliné avec la garniture de votre choix.',
+    options: [
+      { label: 'Poulet de chair', price: 7000 },
+      { label: 'Pondeuse', price: 8000 },
+      { label: 'Poulet africain', price: 8500 },
+      { label: 'Pintade', price: 12000 },
+      { label: 'Lapin', price: 15000 },
+      { label: 'Lapin — grande portion', price: 20000 },
+      { label: 'Viande de bœuf', price: 9000 },
+      { label: 'Viande de mouton', price: 15000 },
+    ],
+    image: {
+      src: 'assets/images/dishes/riz-soumbala.webp',
+      avifSrc: 'assets/images/dishes/riz-soumbala.avif',
+      width: 1200,
+      height: 1600,
+      alt: 'Grand plat de riz soumbala accompagné de volaille',
+    },
+    featured: true,
+  },
+  {
+    id: 'riz-soumbala-standard',
+    name: 'Riz soumbala standard',
+    category: 'specialites',
+    description: 'Poisson, crabe, écrevisse et escargot.',
+    price: 10000,
+    image: {
+      src: 'assets/images/dishes/riz-soumbala-standard.webp',
+      avifSrc: 'assets/images/dishes/riz-soumbala-standard.avif',
+      width: 1200,
+      height: 1600,
+      alt: 'Riz soumbala standard avec poisson, crabe, écrevisses et escargots',
+    },
+  },
+  {
+    id: 'riz-soumbala-vip',
+    name: 'Riz soumbala VIP',
+    category: 'specialites',
+    description:
+      'Poisson, écrevisses, crabe de mer et de lagune, escargot et calamar.',
+    price: 20000,
+    image: {
+      src: 'assets/images/dishes/seafood-stew.webp',
+      avifSrc: 'assets/images/dishes/seafood-stew.avif',
+      width: 1200,
+      height: 1501,
+      alt: 'Marmite de poisson, crabe et crustacés en sauce',
+    },
+    featured: true,
+  },
+  {
+    id: 'kedjenou-quatre-personnes',
+    name: 'Kedjenou — 4 personnes',
+    category: 'specialites',
+    options: [
+      { label: 'Poulet de chair', price: 6000 },
+      { label: 'Pondeuse', price: 7000 },
+      { label: 'Poulet africain', price: 7500 },
+      { label: 'Poulet nature', price: 10000 },
+      { label: 'Pintade', price: 13000 },
+      { label: 'Escargots', price: 5000 },
+      { label: 'Lapin', price: 12000 },
+      { label: 'Lapin — grande portion', price: 15000 },
+    ],
+    image: {
+      src: 'assets/images/dishes/chicken-stew.webp',
+      avifSrc: 'assets/images/dishes/chicken-stew.avif',
+      width: 1200,
+      height: 1600,
+      alt: 'Volaille mijotée en sauce accompagnée de riz blanc',
+    },
+    featured: true,
+  },
+  {
+    id: 'soupe-tete-mouton',
+    name: 'Soupe de tête, pattes et boyaux de mouton',
+    category: 'specialites',
+    price: 5000,
+  },
+  {
+    id: 'soupe-du-chasseur',
+    name: 'Soupe du chasseur',
+    category: 'specialites',
+    description: 'Agouti, perdrix, rat, biche ou hérisson.',
+    price: 25000,
+    priceFrom: true,
+    note: 'Sur commande',
+  },
+  {
+    id: 'mojito-nature',
+    name: 'Mojito nature',
+    category: 'cocktails',
+    options: [
+      { label: 'Sans alcool', price: 3000 },
+      { label: 'Alcoolisé', price: 3500 },
+    ],
+  },
+  {
+    id: 'mojito-passion',
+    name: 'Mojito passion',
+    category: 'cocktails',
+    options: [
+      { label: 'Sans alcool', price: 3000 },
+      { label: 'Alcoolisé', price: 3500 },
+    ],
+    image: {
+      src: 'assets/images/drinks/passion-cocktail.webp',
+      avifSrc: 'assets/images/drinks/passion-cocktail.avif',
+      width: 1200,
+      height: 1501,
+      alt: 'Cocktail glacé aux fruits, agrumes et menthe',
+    },
+    featured: true,
+  },
+  {
+    id: 'mojito-fraise',
+    name: 'Mojito fraise',
+    category: 'cocktails',
+    options: [
+      { label: 'Sans alcool', price: 3000 },
+      { label: 'Alcoolisé', price: 3500 },
+    ],
+  },
+  {
+    id: 'cocktail-fruits-saison',
+    name: 'Fruits de saison',
+    category: 'cocktails',
+    options: [
+      { label: 'Sans alcool', price: 3000 },
+      { label: 'Alcoolisé', price: 3500 },
+    ],
+  },
+  {
+    id: 'cocktail-monaco',
+    name: 'Monaco',
+    category: 'cocktails',
+    price: 4000,
+  },
+  {
+    id: 'cocktail-bleu-lagons',
+    name: 'Bleu Lagons',
+    category: 'cocktails',
+    price: 4000,
+  },
+  {
+    id: 'cocktail-gins-tonic',
+    name: 'Gins tonic',
+    category: 'cocktails',
+    price: 4000,
+  },
+  {
+    id: 'cocktail-menthe-alcoolise',
+    name: 'Menthe alcoolisé',
+    category: 'cocktails',
+    price: 4000,
+  },
+  {
+    id: 'cocktail-yama-toutou',
+    name: 'Le Yama Toutou',
+    category: 'cocktails',
+    price: 4000,
+  },
+  { id: 'jus-passion', name: 'Passion', category: 'jus', price: 1000, image: NATURAL_JUICES_IMAGE },
+  { id: 'jus-multifruits', name: 'Multifruits', category: 'jus', price: 1000, image: NATURAL_JUICES_IMAGE },
+  {
+    id: 'jus-bissap',
+    name: 'Hibiscus (bissap)',
+    category: 'jus',
+    price: 1000,
+    image: NATURAL_JUICES_IMAGE,
+  },
+  { id: 'jus-gingembre', name: 'Gingembre', category: 'jus', price: 1000, image: NATURAL_JUICES_IMAGE },
+  { id: 'jus-tomi', name: 'Tomi', category: 'jus', price: 1000, image: NATURAL_JUICES_IMAGE },
+  { id: 'jus-citron', name: 'Citron', category: 'jus', price: 1000, image: NATURAL_JUICES_IMAGE },
+  { id: 'biere-beaufort', name: 'Beaufort', category: 'bieres', price: 800 },
+  { id: 'biere-bock-66', name: 'Bock 66', category: 'bieres', price: 700 },
+  {
+    id: 'biere-booster-tequila',
+    name: 'Booster Tequila',
+    category: 'bieres',
+    price: 700,
+  },
+  { id: 'biere-chill-50', name: 'Chill 50', category: 'bieres', price: 700 },
+  {
+    id: 'biere-guinness-50',
+    name: 'Guinness 50',
+    category: 'bieres',
+    price: 700,
+  },
+  {
+    id: 'biere-guinness-30',
+    name: 'Guinness 30',
+    category: 'bieres',
+    price: 700,
+  },
+  { id: 'biere-ivoire-60', name: 'Ivoire 60', category: 'bieres', price: 700 },
+  { id: 'biere-desperados', name: 'Desperados', category: 'bieres', price: 800 },
+  { id: 'biere-heineken', name: 'Heineken', category: 'bieres', price: 800 },
+  { id: 'biere-budweiser', name: 'Budweiser', category: 'bieres', price: 700 },
+  { id: 'eau-awa', name: 'Awa', category: 'sans-alcool', price: 700 },
+  { id: 'eau-olgane', name: 'Olgane', category: 'sans-alcool', price: 700 },
+  { id: 'eau-celeste', name: 'Céleste', category: 'sans-alcool', price: 700 },
+  { id: 'eau-cristaline', name: 'Cristaline', category: 'sans-alcool', price: 700 },
+  { id: 'soft-bavaria', name: 'Bavaria', category: 'sans-alcool', price: 1000 },
+  { id: 'soft-malta', name: 'Malta', category: 'sans-alcool', price: 800 },
+  { id: 'soft-codys', name: "Cody's", category: 'sans-alcool', price: 1000 },
+  {
+    id: 'soft-sucrerie-60',
+    name: 'Sucrerie 60',
+    category: 'sans-alcool',
+    price: 1000,
+  },
+  {
+    id: 'soft-sucrerie-33',
+    name: 'Sucrerie 33',
+    category: 'sans-alcool',
+    price: 800,
+  },
+  {
+    id: 'soft-pinho-doppel',
+    name: 'Pinho / Doppel',
+    category: 'sans-alcool',
+    price: 1000,
+  },
+  {
+    id: 'chaud-nescafe',
+    name: 'Nescafé',
+    category: 'boissons-chaudes',
+    price: 800,
+  },
+  {
+    id: 'chaud-nespresso',
+    name: 'Nespresso',
+    category: 'boissons-chaudes',
+    price: 1000,
+  },
+  { id: 'chaud-the', name: 'Thé', category: 'boissons-chaudes', price: 700 },
+  {
+    id: 'chaud-miel-citron',
+    name: 'Miel et citron',
+    category: 'boissons-chaudes',
+    price: 700,
+  },
+  {
+    id: 'chaud-gingembre',
+    name: 'Gingembre',
+    category: 'boissons-chaudes',
+    price: 700,
+  },
+  { id: 'liqueur-jb', name: 'J&B', category: 'liqueurs', price: 1000 },
+  {
+    id: 'liqueur-jack-daniels',
+    name: "Jack Daniel's",
+    category: 'liqueurs',
+    price: 2000,
+  },
+  { id: 'liqueur-gordons', name: "Gordon's", category: 'liqueurs', price: 1000 },
+  { id: 'liqueur-campari', name: 'Campari', category: 'liqueurs', price: 1000 },
+  { id: 'liqueur-red-label', name: 'Red Label', category: 'liqueurs', price: 2000 },
+  {
+    id: 'liqueur-black-label',
+    name: 'Black Label',
+    category: 'liqueurs',
+    price: 1000,
+  },
+  {
+    id: 'liqueur-saint-james',
+    name: 'Saint James',
+    category: 'liqueurs',
+    price: 1000,
+  },
+  { id: 'liqueur-mangoustan', name: 'Mangoustan', category: 'liqueurs', price: 1000 },
+  { id: 'liqueur-martini', name: 'Martini', category: 'liqueurs', price: 1000 },
+  {
+    id: 'liqueur-ballantines',
+    name: "Ballantine's",
+    category: 'liqueurs',
+    price: 1000,
+  },
+  {
+    id: 'liqueur-sir-edwards',
+    name: "Sir Edward's",
+    category: 'liqueurs',
+    price: 1000,
+  },
+  { id: 'liqueur-vodka', name: 'Vodka', category: 'liqueurs', price: 1000 },
+  { id: 'liqueur-baileys', name: 'Baileys', category: 'liqueurs', price: 1000 },
+  { id: 'liqueur-boom-boom', name: 'Boom Boom', category: 'liqueurs', price: 1000 },
+  {
+    id: 'liqueur-whisky-peche',
+    name: 'Whisky pêche',
+    category: 'liqueurs',
+    price: 1000,
+  },
+  {
+    id: 'saveur-passion',
+    name: 'Saveur d’Afrique — Passion',
+    category: 'liqueurs',
+    price: 1000,
+  },
+  {
+    id: 'saveur-cannelle',
+    name: 'Saveur d’Afrique — Cannelle',
+    category: 'liqueurs',
+    price: 2000,
+  },
+  {
+    id: 'saveur-citron',
+    name: 'Saveur d’Afrique — Citron',
+    category: 'liqueurs',
+    price: 1000,
+  },
+  {
+    id: 'saveur-clementine',
+    name: 'Saveur d’Afrique — Clémentine',
+    category: 'liqueurs',
+    price: 1000,
+  },
+  {
+    id: 'saveur-ananas',
+    name: 'Saveur d’Afrique — Ananas',
+    category: 'liqueurs',
+    price: 1000,
+  },
+  {
+    id: 'saveur-gingembre',
+    name: 'Saveur d’Afrique — Gingembre',
+    category: 'liqueurs',
+    price: 1000,
+  },
+  {
+    id: 'saveur-clous-girofle',
+    name: 'Saveur d’Afrique — Clous de girofle',
+    category: 'liqueurs',
+    price: 1000,
+  },
+  {
+    id: 'saveur-poivre-long-gingembre',
+    name: 'Saveur d’Afrique — Poivre long et gingembre',
+    category: 'liqueurs',
+    price: 1000,
+  },
+  {
+    id: 'saveurs-bouteille',
+    name: 'Bouteille Saveurs d’Afrique',
+    category: 'liqueurs',
+    price: 7000,
+  },
+  { id: 'vin-chambery', name: 'Chambery', category: 'vins', price: 4000 },
+  {
+    id: 'vin-baron-dardignac',
+    name: "Baron d'Ardignac",
+    category: 'vins',
+    price: 5000,
+  },
+  {
+    id: 'vin-louis-eschenauer',
+    name: 'Louis Eschenauer',
+    category: 'vins',
+    price: 6000,
+  },
+  {
+    id: 'vin-cuvee',
+    name: 'Les vins Cuvée',
+    category: 'vins',
+    description: 'Blanc, rouge ou noir.',
+    price: 4000,
+  },
+  {
+    id: 'vin-alexio-garcia',
+    name: 'Alexio Garcia',
+    category: 'vins',
+    price: 4000,
+  },
+  {
+    id: 'vin-grand-versant',
+    name: 'Grand Versant',
+    category: 'vins',
+    description: 'Rouge, blanc ou rouge moelleux.',
+    price: 3500,
+  },
+  {
+    id: 'vin-rlg',
+    name: 'RLG',
+    category: 'vins',
+    description: 'Rouge, blanc ou rouge moelleux.',
+    price: 3500,
+  },
+  {
+    id: 'vin-carillonade-blanc',
+    name: 'Carillonade blanc',
+    category: 'vins',
+    price: 7000,
+  },
+  {
+    id: 'vin-carillonade-bordeaux',
+    name: 'Carillonade Bordeaux',
+    category: 'vins',
+    price: 6000,
+  },
+  {
+    id: 'vin-carillonade-merlot',
+    name: 'Carillonade Merlot',
+    category: 'vins',
+    price: 7000,
+  },
+  {
+    id: 'vin-carillonade-blanc-moelleux',
+    name: 'Carillonade blanc moelleux',
+    category: 'vins',
+    price: 8000,
+  },
+  { id: 'vin-up-chenet', name: 'Up Chenet', category: 'vins', price: 7000 },
+  { id: 'vin-chenet-ice', name: 'Chenet Ice', category: 'vins', price: 6000 },
+  {
+    id: 'vin-grand-versant-blanc',
+    name: 'Grand Versant blanc',
+    category: 'vins',
+    price: 4000,
+  },
+];
+
+function createGeneratedImage(item: MenuItem) {
+  if (item.id === 'soupe-du-chasseur') {
+    return {
+      src: 'assets/images/dishes/hunter-soup.webp',
+      avifSrc: 'assets/images/dishes/hunter-soup.avif',
+      width: 720,
+      height: 960,
+      alt: `Présentation de ${item.name}`,
+    } as const;
+  }
+
+  if (item.id === 'soupe-tete-mouton') {
+    return {
+      src: 'assets/images/dishes/sheep-soup.webp',
+      avifSrc: 'assets/images/dishes/sheep-soup.avif',
+      width: 720,
+      height: 960,
+      alt: `Présentation de ${item.name}`,
+    } as const;
+  }
+
+  return {
+    src: `assets/images/menu-items/${item.id}.webp`,
+    avifSrc: `assets/images/menu-items/${item.id}.avif`,
+    width: 720,
+    height: 720,
+    alt: `Présentation de ${item.name}`,
+  } as const;
+}
+
+export const MENU_ITEMS: readonly MenuItem[] = MENU_ITEMS_SOURCE.map((item) => ({
+  ...item,
+  image:
+    item.category === 'specialites' && item.image
+      ? item.image
+      : createGeneratedImage(item),
+}));

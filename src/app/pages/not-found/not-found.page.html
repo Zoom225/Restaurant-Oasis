@@ -1,0 +1,30 @@
+<section class="relative isolate grid min-h-[70svh] place-items-center overflow-hidden bg-cream-100 px-4 py-20 text-center">
+  <div class="absolute left-1/2 top-1/2 size-[32rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-oasis-900/10"></div>
+  <div class="absolute left-1/2 top-1/2 size-[24rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-oasis-900/10"></div>
+  <div class="relative max-w-2xl">
+    <span class="mx-auto grid size-20 place-items-center rounded-full bg-oasis-900 text-gold-500 shadow-oasis">
+      <svg lucideLeaf aria-hidden="true" class="size-9"></svg>
+    </span>
+    <p class="mt-8 font-display text-8xl font-bold leading-none text-mango-500 sm:text-9xl">{{ statusCode }}</p>
+    <h1 class="mt-5 font-display text-4xl font-bold text-oasis-950 sm:text-5xl">Cette oasis reste introuvable.</h1>
+    <p class="mx-auto mt-5 max-w-lg text-lg leading-8 text-oasis-800/80">
+      La page demandée n’existe pas ou a changé d’adresse. Revenez à l’accueil ou laissez-vous guider vers le menu.
+    </p>
+    <div class="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
+      <a
+        routerLink="/"
+        class="inline-flex items-center justify-center gap-2 rounded-full bg-oasis-900 px-7 py-4 font-extrabold text-white transition hover:bg-mango-600"
+      >
+        <svg lucideArrowLeft aria-hidden="true" class="size-5"></svg>
+        Retour à l’accueil
+      </a>
+      <a
+        routerLink="/menu"
+        class="inline-flex items-center justify-center gap-2 rounded-full bg-gold-500 px-7 py-4 font-extrabold text-wine-950 transition hover:bg-mango-500 hover:text-white"
+      >
+        <svg lucideUtensilsCrossed aria-hidden="true" class="size-5"></svg>
+        Voir le menu
+      </a>
+    </div>
+  </div>
+</section>

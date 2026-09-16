@@ -1,0 +1,73 @@
+<div
+  class="fixed inset-0 z-50 bg-oasis-950/70 backdrop-blur-sm lg:hidden"
+  data-testid="mobile-nav"
+>
+  <button
+    type="button"
+    class="absolute inset-0 size-full cursor-default"
+    aria-label="Fermer le menu"
+    (click)="closed.emit()"
+  ></button>
+  <nav
+    class="relative ml-auto flex h-full w-[min(88vw,24rem)] flex-col bg-cream-50 px-6 py-7 shadow-2xl"
+    aria-label="Navigation mobile"
+  >
+    <div class="flex items-center justify-between border-b border-oasis-900/10 pb-6">
+      <span class="font-display text-2xl font-bold text-oasis-900">Espace Oasis</span>
+      <button
+        type="button"
+        class="grid size-11 place-items-center rounded-full bg-oasis-900 text-white transition hover:bg-mango-600"
+        aria-label="Fermer le menu"
+        data-testid="mobile-close"
+        (click)="closed.emit()"
+      >
+        <svg lucideX aria-hidden="true" class="size-5"></svg>
+      </button>
+    </div>
+
+    <div class="flex flex-1 flex-col justify-center gap-3">
+      <a
+        routerLink="/"
+        routerLinkActive="bg-cream-200 text-oasis-900"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="flex items-center justify-between rounded-2xl px-5 py-4 text-lg font-bold text-oasis-800 transition hover:bg-cream-200"
+        (click)="closed.emit()"
+      >
+        Accueil
+        <svg lucideArrowRight aria-hidden="true" class="size-5"></svg>
+      </a>
+      <a
+        routerLink="/menu"
+        routerLinkActive="bg-cream-200 text-oasis-900"
+        class="flex items-center justify-between rounded-2xl px-5 py-4 text-lg font-bold text-oasis-800 transition hover:bg-cream-200"
+        (click)="closed.emit()"
+      >
+        Menu
+        <svg lucideArrowRight aria-hidden="true" class="size-5"></svg>
+      </a>
+      <a
+        routerLink="/"
+        fragment="galerie"
+        class="flex items-center justify-between rounded-2xl px-5 py-4 text-lg font-bold text-oasis-800 transition hover:bg-cream-200"
+        (click)="closed.emit()"
+      >
+        Galerie
+        <svg lucideArrowRight aria-hidden="true" class="size-5"></svg>
+      </a>
+      <a
+        routerLink="/"
+        fragment="nous-trouver"
+        class="flex items-center justify-between rounded-2xl px-5 py-4 text-lg font-bold text-oasis-800 transition hover:bg-cream-200"
+        (click)="closed.emit()"
+      >
+        Nous trouver
+        <svg lucideArrowRight aria-hidden="true" class="size-5"></svg>
+      </a>
+    </div>
+
+    <p class="rounded-2xl bg-oasis-900 px-5 py-4 text-sm leading-relaxed text-cream-100">
+      Bassam · Quartier France<br />
+      <span class="text-white/70">À la descente du pont, à gauche</span>
+    </p>
+  </nav>
+</div>

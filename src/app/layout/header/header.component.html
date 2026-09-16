@@ -1,0 +1,84 @@
+<header
+  class="sticky top-0 z-40 border-b border-oasis-950/10 bg-cream-50/95 backdrop-blur-xl"
+  data-testid="site-header"
+>
+  <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:h-24 lg:px-8">
+    <a routerLink="/" class="flex items-center gap-3" aria-label="Espace Oasis, accueil">
+      <img
+        [ngSrc]="restaurant.logo.src"
+        [width]="restaurant.logo.width"
+        [height]="restaurant.logo.height"
+        [alt]="restaurant.logo.alt"
+        class="size-14 rounded-full object-contain shadow-soft lg:size-16"
+        priority
+      />
+      <span class="hidden sm:block">
+        <span class="block font-display text-xl font-bold leading-none text-oasis-900 lg:text-2xl">
+          Espace Oasis
+        </span>
+        <span class="mt-1 block text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-mango-600">
+          Restaurant · Grill
+        </span>
+      </span>
+    </a>
+
+    <nav class="hidden items-center gap-1 lg:flex" aria-label="Navigation principale">
+      <a
+        routerLink="/"
+        routerLinkActive="!text-oasis-900"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="rounded-full px-5 py-3 text-sm font-bold text-oasis-700 transition hover:bg-cream-200 hover:text-oasis-900"
+      >
+        Accueil
+      </a>
+      <a
+        routerLink="/menu"
+        routerLinkActive="!text-oasis-900"
+        class="rounded-full px-5 py-3 text-sm font-bold text-oasis-700 transition hover:bg-cream-200 hover:text-oasis-900"
+      >
+        Menu
+      </a>
+      <a
+        routerLink="/"
+        fragment="galerie"
+        class="rounded-full px-5 py-3 text-sm font-bold text-oasis-700 transition hover:bg-cream-200 hover:text-oasis-900"
+      >
+        Galerie
+      </a>
+      <a
+        routerLink="/"
+        fragment="nous-trouver"
+        class="rounded-full px-5 py-3 text-sm font-bold text-oasis-700 transition hover:bg-cream-200 hover:text-oasis-900"
+      >
+        Nous trouver
+      </a>
+    </nav>
+
+    <a
+      routerLink="/menu"
+      data-testid="header-menu-link"
+      class="hidden items-center gap-2 rounded-full bg-oasis-900 px-5 py-3 text-sm font-extrabold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-mango-600 lg:flex"
+    >
+      <svg lucideUtensilsCrossed aria-hidden="true" class="size-4"></svg>
+      Voir le menu
+    </a>
+
+    <button
+      type="button"
+      class="grid size-12 place-items-center rounded-full bg-oasis-900 text-white shadow-soft transition hover:bg-mango-600 lg:hidden"
+      aria-label="Ouvrir le menu"
+      [attr.aria-expanded]="mobileOpen()"
+      aria-controls="navigation-mobile"
+      data-testid="mobile-toggle"
+      (click)="toggleMobileMenu()"
+    >
+      <svg lucideMenu aria-hidden="true" class="size-6"></svg>
+    </button>
+  </div>
+</header>
+
+@if (mobileOpen()) {
+  <div id="navigation-mobile">
+    <app-mobile-navigation (closed)="closeMobileMenu()" />
+  </div>
+}
